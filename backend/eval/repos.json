@@ -1,0 +1,37 @@
+[
+  {
+    "name": "express-simple-rest",
+    "url": "https://github.com/learncodeacademy/node-rest-shop",
+    "description": "Classic Node.js Express REST API with products & orders routes",
+    "files_count": 8,
+    "has_tests": true
+  },
+  {
+    "name": "express-todo-api",
+    "url": "https://github.com/scotch-io/node-todo",
+    "description": "Express + MongoDB / in-memory Todo API with middleware",
+    "files_count": 6,
+    "has_tests": false
+  },
+  {
+    "name": "express-auth-starter",
+    "url": "https://github.com/sahat/hackathon-starter",
+    "description": "Express user authentication with JWT and bcrypt",
+    "files_count": 12,
+    "has_tests": true
+  },
+  {
+    "name": "express-micro-blog",
+    "url": "https://github.com/gothinkster/node-express-realworld-example-app",
+    "description": "Conduit RealWorld backend API with controllers and models",
+    "files_count": 15,
+    "has_tests": true
+  },
+  {
+    "name": "express-file-uploader",
+    "url": "https://github.com/bezkoder/node-js-express-file-upload",
+    "description": "Express multer file upload service",
+    "files_count": 4,
+    "has_tests": false
+  }
+]

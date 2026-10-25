@@ -1,0 +1,47 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node dependencies and build
+node_modules/
+dist/
+build/
+.npm
+.vite
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Local databases & vector storage
+*.db
+*.sqlite3
+runs.db
+backend/runs.db
+qdrant_data/
+
+# Generated run outputs & test artifacts
+workspaces/
+reports/
+backend/workspaces/
+backend/reports/
+backend/test_download.zip
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
