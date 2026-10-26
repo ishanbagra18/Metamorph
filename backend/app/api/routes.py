@@ -195,3 +195,70 @@ async def download_migrated_zip(run_id: str):
         filename=f"metamorph-migrated-{run_id}.zip",
         media_type="application/zip"
     )
+
+
+@router.delete("/runs/{run_id}")
+async def delete_run(run_id: str):
+    """Deletes a run and cleans up disk artifacts."""
+    run = storage.get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail="Run not found.")
+
+    storage.delete_run(run_id)
+
+    # Clean up workspace
+    workspace = Path(settings.WORKSPACES_DIR) / run_id
+    if workspace.exists():
+        shutil.rmtree(workspace, ignore_errors=True)
+
+    # Clean up zipped report
+    report_zip = Path(settings.REPORTS_DIR) / f"metamorph-{run_id}.zip"
+    if report_zip.exists():
+        report_zip.unlink(missing_ok=True)
+
+    return {"message": f"Run {run_id} deleted successfully."}
+
+
+@router.post("/runs/{run_id}/cancel")
+async def cancel_run(run_id: str):
+    """Cancels an ongoing migration run."""
+    run = storage.get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail="Run not found.")
+
+    state = run.get("state") or {}
+    state["status"] = "cancelled"
+    state.setdefault("logs", []).append("Migration run cancelled by user.")
+    storage.update_run_state(run_id, "cancelled", state)
+
+    await ws_manager.broadcast(run_id, "run_failed", {
+        "run_id": run_id,
+        "error": "Migration cancelled by user."
+    })
+    return {"message": f"Run {run_id} marked as cancelled."}
+
+
+@router.get("/runs/{run_id}/report")
+async def get_run_report(run_id: str):
+    """Returns the markdown and structured report for a run."""
+    run = storage.get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail="Run not found.")
+
+    state = run.get("state") or {}
+    report = state.get("report") or {}
+    report_file = Path(settings.WORKSPACES_DIR) / run_id / "migrated" / "MIGRATION_REPORT.md"
+    markdown_content = ""
+    if report_file.exists():
+        try:
+            markdown_content = report_file.read_text(encoding="utf-8")
+        except Exception:
+            markdown_content = ""
+
+    return {
+        "run_id": run_id,
+        "repo_name": run.get("repo_name"),
+        "status": run.get("status"),
+        "report": report,
+        "markdown": markdown_content or report.get("executive_summary", "")
+    }

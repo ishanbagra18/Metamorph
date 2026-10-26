@@ -100,5 +100,10 @@ class StorageService:
                 for r in rows
             ]
 
+    def delete_run(self, run_id: str):
+        with self._get_connection() as conn:
+            conn.execute("DELETE FROM runs WHERE run_id = ?", (run_id,))
+            conn.commit()
+
 
 storage = StorageService()

@@ -10,6 +10,8 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes import router as api_router
+from app.api.auth import router as auth_router
+from app.api.admin import router as admin_router
 from app.api.ws import ws_manager
 from app.config import settings
 
@@ -45,6 +47,8 @@ app.add_middleware(
 )
 
 # Mount Routes
+app.include_router(auth_router, prefix="/api")
+app.include_router(admin_router, prefix="/api")
 app.include_router(api_router, prefix="/api")
 
 
