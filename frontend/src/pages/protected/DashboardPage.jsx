@@ -8,6 +8,8 @@ import { ProgressBar } from '../../components/ui/ProgressBar';
 import { SkeletonTable } from '../../components/ui/Skeleton';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { useToast } from '../../context/ToastContext';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 import {
   Layers,
   CheckCircle2,
@@ -21,8 +23,7 @@ import {
   ShieldCheck,
   FileCode,
   Terminal,
-  Clock,
-  Sparkles
+  Clock
 } from 'lucide-react';
 
 export function DashboardPage() {
@@ -31,7 +32,8 @@ export function DashboardPage() {
   const [deleteRunId, setDeleteRunId] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const { openNewRunModal } = useOutletContext();
+  const outletCtx = useOutletContext();
+  const openNewRunModal = outletCtx?.openNewRunModal || (() => {});
   const toast = useToast();
 
   const fetchRuns = async () => {
@@ -79,33 +81,37 @@ export function DashboardPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-      {/* Top Banner & Quick Action */}
+      <SEO
+        title="Engine Dashboard"
+        description="Monitor real-time migration status, agent telemetry, active runs, and repository conversions."
+        canonicalPath="/dashboard"
+      />
+      <Breadcrumbs items={[{ label: 'Dashboard' }]} />
+
+      {/* Top Header & Action */}
       <div
-        className="glass-panel-elevated"
         style={{
-          padding: '28px 32px',
+          padding: '24px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '20px',
-          background: 'linear-gradient(135deg, rgba(2, 132, 199, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%)',
-          border: '1px solid var(--border-default)'
+          gap: '16px',
+          backgroundColor: 'var(--bg-card)',
+          border: '1px solid var(--border-subtle)',
+          borderRadius: 'var(--radius-md)'
         }}
       >
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-            <span style={{ fontSize: '1.25rem' }}>🦋</span>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
-              Autonomous Migration Control Center
-            </h2>
-          </div>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', maxWidth: '640px' }}>
-            Upload legacy Node.js Express codebases to let Metamorph plan topological order, query AST vector embeddings in Qdrant, and self-heal TypeScript compiler errors.
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.02em', marginBottom: '4px' }}>
+            Migration Control Plane
+          </h2>
+          <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', maxWidth: '640px' }}>
+            Orchestrate topological AST analysis, Qdrant vector retrieval, and compiler-guided TypeScript conversions.
           </p>
         </div>
 
-        <Button variant="primary" size="lg" icon={PlusCircle} onClick={openNewRunModal}>
+        <Button variant="primary" size="md" icon={PlusCircle} onClick={openNewRunModal}>
           New Migration
         </Button>
       </div>
@@ -154,7 +160,7 @@ export function DashboardPage() {
         <Card style={{ padding: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--text-secondary)' }}>TOTAL REPOSITORIES</span>
-            <Sparkles size={18} style={{ color: 'var(--status-warning)' }} />
+            <Layers size={18} style={{ color: 'var(--text-muted)' }} />
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)', marginTop: '8px' }}>
             {totalRuns}

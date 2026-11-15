@@ -2,14 +2,104 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Metamorph: Autonomous JS to TS Migration Agent</title>
-    <meta name="description" content="Self-correcting AST-directed agent that migrates Node.js Express codebases from JavaScript to strict TypeScript." />
+    <meta name="theme-color" content="#090d16" />
+
+    <!-- Browser Tab Title (strictly clean, no Vite / React) -->
+    <title>Metamorph: Autonomous JavaScript to TypeScript Migration Engine</title>
+    <meta name="description" content="Self-correcting, AST-directed multi-agent system powered by LangGraph, Qdrant RAG, and live TypeScript compiler feedback loops that transforms legacy Express JS codebases into strictly-typed TypeScript." />
+    <meta name="keywords" content="TypeScript migration, JavaScript to TypeScript, AST parsing, LangGraph, Qdrant, Code Modernization, Automated Refactoring, Node.js, Express" />
+    <meta name="author" content="Metamorph Autonomous Systems" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://metamorph.dev/" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Metamorph" />
+    <meta property="og:url" content="https://metamorph.dev/" />
+    <meta property="og:title" content="Metamorph: Autonomous JavaScript to TypeScript Migration Engine" />
+    <meta property="og:description" content="Autonomous, AST-directed multi-agent system that converts Node.js/Express JavaScript repos to strict TypeScript with live compiler validation." />
+    <meta property="og:image" content="https://metamorph.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Metamorph Autonomous JavaScript to TypeScript Migration Agent" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@metamorph_dev" />
+    <meta name="twitter:creator" content="@metamorph_dev" />
+    <meta name="twitter:title" content="Metamorph: Autonomous JavaScript to TypeScript Migration Engine" />
+    <meta name="twitter:description" content="Migrate legacy Node.js/Express codebases to strict TypeScript with topological LangGraph planning and self-healing compiler loops." />
+    <meta name="twitter:image" content="https://metamorph.dev/og-image.png" />
+    <meta name="twitter:image:alt" content="Metamorph Autonomous JS to TS Migration System" />
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org JSON-LD Structured Data: SoftwareApplication & LocalBusiness / Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://metamorph.dev/#software",
+          "name": "Metamorph",
+          "url": "https://metamorph.dev",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "All (Cloud, Docker, Linux, macOS, Windows)",
+          "description": "Self-correcting, AST-directed multi-agent system powered by LangGraph, Qdrant Vector RAG, and compiler feedback loops that migrates legacy JavaScript codebases to strictly-typed TypeScript.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "AST-Aware Chunking & Symbol Extraction",
+            "Tarjan SCC Circular Dependency Detection",
+            "Topological Migration Ordering",
+            "Qdrant Semantic Code Vector Retrieval",
+            "Isolated Docker & Subprocess Sandboxes",
+            "Self-Healing tsc --noEmit Feedback Loops",
+            "Automated Test Ladder Verification"
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://metamorph.dev/#organization",
+          "name": "Metamorph Technologies Inc.",
+          "legalName": "Metamorph Autonomous Systems Inc.",
+          "url": "https://metamorph.dev",
+          "logo": "https://metamorph.dev/favicon.svg",
+          "image": "https://metamorph.dev/og-image.png",
+          "telephone": "+1-415-555-0199",
+          "email": "contact@metamorph.dev",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "100 Montgomery Street, Suite 1500",
+            "addressLocality": "San Francisco",
+            "addressRegion": "CA",
+            "postalCode": "94104",
+            "addressCountry": "US"
+          },
+          "openingHours": "Mo-Fr 09:00-18:00",
+          "priceRange": "$$",
+          "sameAs": [
+            "https://github.com/metamorph-dev/metamorph",
+            "https://twitter.com/metamorph_dev"
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

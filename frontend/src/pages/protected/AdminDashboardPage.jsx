@@ -5,6 +5,8 @@ import { Badge } from '../../components/ui/Badge';
 import { SkeletonCard } from '../../components/ui/Skeleton';
 import { useToast } from '../../context/ToastContext';
 import { Shield, Users, Layers, CheckCircle2, AlertTriangle, Cpu, Terminal, Award } from 'lucide-react';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 
 export function AdminDashboardPage() {
   const [stats, setStats] = useState(null);
@@ -28,6 +30,13 @@ export function AdminDashboardPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+      <SEO
+        title="Admin Telemetry"
+        description="System-wide multi-agent performance metrics, sandbox utilization, and error diagnostics."
+        canonicalPath="/admin/dashboard"
+      />
+      <Breadcrumbs items={[{ label: 'Admin', href: '/admin/dashboard' }, { label: 'Telemetry' }]} />
+
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         <div style={{ padding: '8px', borderRadius: 'var(--radius-md)', backgroundColor: 'rgba(139, 92, 246, 0.15)', color: 'var(--accent-purple)' }}>
           <Shield size={24} />

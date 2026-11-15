@@ -41,7 +41,7 @@ export function TerminalView({ logs = [], isRunning = false, wsConnected = false
   const formatLogLine = (line) => {
     const isError = line.toLowerCase().includes('error') || line.toLowerCase().includes('fail');
     const isSuccess = line.toLowerCase().includes('success') || line.toLowerCase().includes('passed');
-    const isAgent = line.toLowerCase().includes('agent') || line.includes('🦋');
+    const isAgent = line.toLowerCase().includes('agent') || line.includes('[AGENT]') || line.includes('[RAG]');
     const isTsc = line.includes('TS') || line.toLowerCase().includes('tsc');
 
     let color = 'var(--text-secondary)';

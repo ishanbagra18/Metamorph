@@ -19,7 +19,7 @@ export function Skeleton({ width = '100%', height = '20px', borderRadius = 'var(
 
 export function SkeletonCard() {
   return (
-    <div className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Skeleton width="40%" height="24px" />
       <Skeleton width="80%" height="16px" />
       <Skeleton width="100%" height="60px" borderRadius="var(--radius-md)" />
@@ -33,7 +33,7 @@ export function SkeletonCard() {
 
 export function SkeletonTable({ rows = 5 }) {
   return (
-    <div className="glass-panel" style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+    <div style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
       <Skeleton width="100%" height="36px" borderRadius="var(--radius-md)" />
       {Array.from({ length: rows }).map((_, i) => (
         <div key={i} style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>

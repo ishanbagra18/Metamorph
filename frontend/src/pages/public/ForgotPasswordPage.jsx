@@ -6,6 +6,8 @@ import { Input } from '../../components/ui/Input';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/ui/Card';
 import { Mail, ArrowLeft, Send, CheckCircle2 } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 
 export function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -45,12 +47,19 @@ export function ForgotPasswordPage() {
         justifyContent: 'center',
         padding: '40px 16px'
       }}
-      className="bg-glow-radial"
     >
-      <div style={{ width: '100%', maxWidth: '440px' }} className="animate-fade-in">
-        <Card className="glass-panel-elevated" style={{ padding: '36px 32px' }}>
+      <SEO
+        title="Forgot Password"
+        description="Recover your Metamorph account access and reset your migration engine credentials."
+        canonicalPath="/forgot-password"
+      />
+      <div style={{ width: '100%', maxWidth: '420px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+          <Breadcrumbs items={[{ label: 'Forgot Password' }]} />
+        </div>
+        <Card style={{ padding: '32px 28px' }}>
           <CardHeader style={{ textAlign: 'center', marginBottom: '24px' }}>
-            <CardTitle style={{ fontSize: '1.5rem' }}>Reset Password</CardTitle>
+            <CardTitle as="h1" style={{ fontSize: '1.5rem' }}>Reset Password</CardTitle>
             <CardDescription>
               Enter the email address registered with your Metamorph account.
             </CardDescription>

@@ -5,24 +5,23 @@ export function Card({ children, className = '', style = {}, hover = false, ...p
     <div
       className={`glass-panel ${className}`}
       style={{
-        padding: '24px',
+        padding: '20px',
         position: 'relative',
-        transition: 'transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal)',
+        backgroundColor: 'var(--bg-card)',
+        border: '1px solid var(--border-subtle)',
+        borderRadius: 'var(--radius-md)',
+        transition: 'border-color 100ms ease',
         ...(hover ? { cursor: 'pointer' } : {}),
         ...style
       }}
       onMouseEnter={(e) => {
         if (hover) {
-          e.currentTarget.style.transform = 'translateY(-2px)';
-          e.currentTarget.style.borderColor = 'var(--border-focus)';
-          e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
+          e.currentTarget.style.borderColor = 'var(--border-default)';
         }
       }}
       onMouseLeave={(e) => {
         if (hover) {
-          e.currentTarget.style.transform = 'translateY(0)';
           e.currentTarget.style.borderColor = 'var(--border-subtle)';
-          e.currentTarget.style.boxShadow = 'none';
         }
       }}
       {...props}
@@ -36,7 +35,7 @@ export function CardHeader({ children, style = {}, ...props }) {
   return (
     <div
       style={{
-        marginBottom: '16px',
+        marginBottom: '14px',
         display: 'flex',
         flexDirection: 'column',
         gap: '4px',
@@ -49,20 +48,20 @@ export function CardHeader({ children, style = {}, ...props }) {
   );
 }
 
-export function CardTitle({ children, style = {}, ...props }) {
+export function CardTitle({ as: Component = 'h3', children, style = {}, ...props }) {
   return (
-    <h3
+    <Component
       style={{
-        fontSize: '1.25rem',
-        fontWeight: 700,
+        fontSize: '1.0625rem',
+        fontWeight: 600,
         color: 'var(--text-primary)',
-        letterSpacing: '-0.02em',
+        letterSpacing: '-0.015em',
         ...style
       }}
       {...props}
     >
       {children}
-    </h3>
+    </Component>
   );
 }
 
@@ -70,9 +69,9 @@ export function CardDescription({ children, style = {}, ...props }) {
   return (
     <p
       style={{
-        fontSize: '0.875rem',
+        fontSize: '0.8125rem',
         color: 'var(--text-secondary)',
-        lineHeight: 1.5,
+        lineHeight: 1.45,
         ...style
       }}
       {...props}
@@ -94,13 +93,12 @@ export function CardFooter({ children, style = {}, ...props }) {
   return (
     <div
       style={{
-        marginTop: '20px',
-        paddingTop: '16px',
+        marginTop: '16px',
+        paddingTop: '14px',
         borderTop: '1px solid var(--border-subtle)',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
-        gap: '12px',
+        justifyContent: 'space-between',
         ...style
       }}
       {...props}

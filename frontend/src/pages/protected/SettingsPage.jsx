@@ -8,6 +8,8 @@ import { Input } from '../../components/ui/Input';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { useToast } from '../../context/ToastContext';
 import { Lock, Sun, Moon, ShieldAlert, Cpu, Trash2, Key } from 'lucide-react';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 
 export function SettingsPage() {
   const { user, changePassword, deleteAccount } = useAuth();
@@ -62,6 +64,13 @@ export function SettingsPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px', maxWidth: '800px' }}>
+      <SEO
+        title="System Settings"
+        description="Configure LLM providers, sandbox isolation settings, theme preferences, and security parameters."
+        canonicalPath="/settings"
+      />
+      <Breadcrumbs items={[{ label: 'Settings' }]} />
+
       <div>
         <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
           Preferences & Security

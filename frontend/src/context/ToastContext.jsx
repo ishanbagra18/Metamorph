@@ -53,18 +53,15 @@ export function ToastProvider({ children }) {
         {toasts.map(t => (
           <div
             key={t.id}
-            className="animate-fade-in glass-panel-elevated"
             style={{
-              padding: '12px 16px',
+              padding: '10px 14px',
               display: 'flex',
               alignItems: 'center',
-              gap: '12px',
-              borderLeft: `4px solid ${
-                t.type === 'success' ? 'var(--status-success)' :
-                t.type === 'error' ? 'var(--status-danger)' :
-                t.type === 'warning' ? 'var(--status-warning)' : 'var(--accent-cyan)'
-              }`,
-              boxShadow: 'var(--shadow-lg)'
+              gap: '10px',
+              backgroundColor: 'var(--bg-surface)',
+              border: '1px solid var(--border-default)',
+              borderRadius: 'var(--radius-md)',
+              boxShadow: 'var(--shadow-md)'
             }}
           >
             {t.type === 'success' && <CheckCircle2 size={18} style={{ color: 'var(--status-success)', flexShrink: 0 }} />}

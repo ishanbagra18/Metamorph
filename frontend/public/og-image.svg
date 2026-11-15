@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Solid deep zinc background -->
+  <rect width="1200" height="630" fill="#09090b"/>
+
+  <!-- Crisp 1px grid -->
+  <g opacity="0.06" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Top Technical Header -->
+  <g transform="translate(100, 90)">
+    <text x="0" y="24" font-family="monospace" font-size="14" font-weight="600" fill="#71717a" letter-spacing="0.1em">
+      INFRASTRUCTURE // COMPILER AUTOMATION
+    </text>
+  </g>
+
+  <!-- Architectural Geometric Logo Mark -->
+  <g transform="translate(1020, 80) scale(1.2)">
+    <path
+      d="M32 4L4 18V50L32 64L60 50V18L32 4Z"
+      stroke="#f4f4f6"
+      stroke-width="3"
+      stroke-linejoin="round"
+      fill="#141418"
+    />
+    <path d="M32 64V34" stroke="#f4f4f6" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M32 34L60 18" stroke="#f4f4f6" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M32 34L4 18" stroke="#f4f4f6" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="32" cy="34" r="5" fill="#3b82f6" />
+  </g>
+
+  <!-- Main Headline -->
+  <text x="100" y="210" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="56" font-weight="700" fill="#f4f4f6" letter-spacing="-0.03em">
+    Metamorph
+  </text>
+  <text x="100" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="600" fill="#a1a1aa" letter-spacing="-0.02em">
+    Node.js to TypeScript Compiler Pipeline
+  </text>
+
+  <!-- Subtitle -->
+  <text x="100" y="330" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400" fill="#71717a">
+    AST dependency resolution, Tarjan SCC cycle resolution, and live tsc --noEmit sandbox validation.
+  </text>
+
+  <!-- Structured Technical Spec Blocks -->
+  <g transform="translate(100, 390)">
+    <rect x="0" y="0" width="220" height="60" rx="4" fill="#121215" stroke="#27272a"/>
+    <text x="20" y="26" font-family="monospace" font-size="11" font-weight="600" fill="#71717a">PARSER</text>
+    <text x="20" y="46" font-family="monospace" font-size="14" font-weight="600" fill="#f4f4f6">Tree-sitter AST</text>
+
+    <rect x="240" y="0" width="220" height="60" rx="4" fill="#121215" stroke="#27272a"/>
+    <text x="20" y="26" transform="translate(240, 0)" font-family="monospace" font-size="11" font-weight="600" fill="#71717a">TOPOLOGY</text>
+    <text x="20" y="46" transform="translate(240, 0)" font-family="monospace" font-size="14" font-weight="600" fill="#f4f4f6">Tarjan SCC Graphs</text>
+
+    <rect x="480" y="0" width="220" height="60" rx="4" fill="#121215" stroke="#27272a"/>
+    <text x="20" y="26" transform="translate(480, 0)" font-family="monospace" font-size="11" font-weight="600" fill="#71717a">RETRIEVAL</text>
+    <text x="20" y="46" transform="translate(480, 0)" font-family="monospace" font-size="14" font-weight="600" fill="#f4f4f6">Qdrant Vector DB</text>
+
+    <rect x="720" y="0" width="240" height="60" rx="4" fill="#121215" stroke="#27272a"/>
+    <text x="20" y="26" transform="translate(720, 0)" font-family="monospace" font-size="11" font-weight="600" fill="#71717a">VERIFICATION</text>
+    <text x="20" y="46" transform="translate(720, 0)" font-family="monospace" font-size="14" font-weight="600" fill="#f4f4f6">tsc --noEmit Sandbox</text>
+  </g>
+
+  <!-- Bottom Divider and Host -->
+  <line x1="100" y1="520" x2="1100" y2="520" stroke="#27272a" stroke-width="1"/>
+  <text x="100" y="565" font-family="monospace" font-size="18" font-weight="600" fill="#f4f4f6">
+    https://metamorph.dev
+  </text>
+  <text x="1100" y="565" text-anchor="end" font-family="monospace" font-size="14" font-weight="500" fill="#71717a">
+    Core Engine v1.0.0
+  </text>
+</svg>

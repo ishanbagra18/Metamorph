@@ -48,16 +48,12 @@ export function Modal({
         style={{
           position: 'fixed',
           inset: 0,
-          backgroundColor: 'rgba(5, 7, 12, 0.75)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          animation: 'fadeIn 0.2s ease-out'
+          backgroundColor: 'rgba(0, 0, 0, 0.7)'
         }}
       />
 
       {/* Modal Dialog */}
       <div
-        className="glass-panel-elevated animate-fade-in"
         style={{
           position: 'relative',
           width: '100%',
@@ -67,7 +63,8 @@ export function Modal({
           flexDirection: 'column',
           backgroundColor: 'var(--bg-surface)',
           border: '1px solid var(--border-default)',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.6)'
+          borderRadius: 'var(--radius-md)',
+          boxShadow: 'var(--shadow-lg)'
         }}
       >
         {/* Header */}

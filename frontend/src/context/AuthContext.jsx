@@ -82,8 +82,8 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     try {
       await authApi.logout();
-    } catch (err) {
-      console.warn('Logout error ignored:', err);
+    } catch (_ignored) {
+      // Offline or network disconnect handled silently
     } finally {
       setUser(null);
       setAuthToken(null);

@@ -9,6 +9,8 @@ import { ProgressBar } from '../../components/ui/ProgressBar';
 import { SkeletonTable } from '../../components/ui/Skeleton';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { useToast } from '../../context/ToastContext';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 import {
   Layers,
   Search,
@@ -31,7 +33,8 @@ export function MigrationsListPage() {
   const [deleteRunId, setDeleteRunId] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const { openNewRunModal } = useOutletContext();
+  const outletCtx = useOutletContext();
+  const openNewRunModal = outletCtx?.openNewRunModal || (() => {});
   const toast = useToast();
   const itemsPerPage = 8;
 
@@ -85,6 +88,13 @@ export function MigrationsListPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <SEO
+        title="Migration Workspaces"
+        description="Browse all JavaScript to TypeScript migration runs, review quality metrics, and download converted repositories."
+        canonicalPath="/migrations"
+      />
+      <Breadcrumbs items={[{ label: 'Migrations' }]} />
+
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
         <div>
@@ -213,7 +223,7 @@ export function MigrationsListPage() {
                       </td>
 
                       <td style={{ padding: '16px 20px', fontWeight: 600, color: quality ? 'var(--status-success)' : 'var(--text-muted)' }}>
-                        {quality ? `${quality}/100` : '—'}
+                        {quality ? `${quality}/100` : '-'}
                       </td>
 
                       <td style={{ padding: '16px 20px', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>

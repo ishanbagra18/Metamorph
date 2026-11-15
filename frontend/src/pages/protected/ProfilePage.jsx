@@ -4,8 +4,10 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../..
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Badge } from '../../components/ui/Badge';
-import { User, Mail, Building, Shield, Sparkles, RefreshCw } from 'lucide-react';
+import { User, Mail, Building, Shield, RefreshCw } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 
 export function ProfilePage() {
   const { user, updateProfile } = useAuth();
@@ -44,6 +46,13 @@ export function ProfilePage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px', maxWidth: '800px' }}>
+      <SEO
+        title="Developer Profile"
+        description="Manage your Metamorph developer profile, API tokens, and team associations."
+        canonicalPath="/profile"
+      />
+      <Breadcrumbs items={[{ label: 'Profile' }]} />
+
       <div>
         <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
           User Profile
@@ -59,7 +68,7 @@ export function ProfilePage() {
           <div style={{ position: 'relative' }}>
             <img
               src={user?.avatar || currentAvatarUrl}
-              alt={user?.name}
+              alt={user?.name || 'Developer profile avatar'}
               style={{
                 width: '84px',
                 height: '84px',
@@ -144,11 +153,11 @@ export function ProfilePage() {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               icon={Building}
-              placeholder="e.g. Acme Corp"
+              placeholder="e.g. Metamorph Labs"
             />
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-              <Button variant="primary" type="submit" isLoading={isSubmitting} icon={Sparkles}>
+              <Button variant="primary" type="submit" isLoading={isSubmitting}>
                 Save Changes
               </Button>
             </div>

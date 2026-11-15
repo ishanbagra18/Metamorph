@@ -64,6 +64,15 @@ class AuthService:
                     """,
                     (admin_id, "admin@metamorph.dev", "Metamorph Admin", hashed, "admin", "Metamorph Labs", "https://api.dicebear.com/7.x/bottts/svg?seed=metamorph-admin")
                 )
+                dev_id = f"usr_{uuid.uuid4().hex[:8]}"
+                hashed_dev = self.hash_password("password123")
+                conn.execute(
+                    """
+                    INSERT INTO users (id, email, name, hashed_password, role, company, avatar)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (dev_id, "developer@metamorph.dev", "Demo Developer", hashed_dev, "user", "Acme Engineering", "https://api.dicebear.com/7.x/bottts/svg?seed=demo-dev")
+                )
                 conn.commit()
 
     @staticmethod

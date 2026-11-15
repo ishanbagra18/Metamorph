@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { BrandLogo } from '../common/BrandLogo';
 import {
   LayoutDashboard,
   Layers,
@@ -97,23 +98,22 @@ export function DashboardSidebar({ isCollapsed, setIsCollapsed, isMobileOpen, se
           >
             <div
               style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: 'var(--radius-md)',
-                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
+                width: '32px',
+                height: '32px',
+                borderRadius: 'var(--radius-sm)',
+                backgroundColor: 'var(--bg-surface)',
+                border: '1px solid var(--border-default)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: 'var(--shadow-glow-cyan)',
-                color: '#ffffff',
-                fontSize: '1.25rem',
+                color: 'var(--text-primary)',
                 flexShrink: 0
               }}
             >
-              🦋
+              <BrandLogo size={18} />
             </div>
             {!isCollapsed && (
-              <span style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
+              <span style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
                 Metamorph
               </span>
             )}
@@ -132,13 +132,13 @@ export function DashboardSidebar({ isCollapsed, setIsCollapsed, isMobileOpen, se
               className="desktop-toggle-btn"
               aria-label="Collapse sidebar"
             >
-              <ChevronLeft size={18} />
+              <ChevronLeft size={16} />
             </button>
           )}
         </div>
 
         {/* Action Button: New Migration */}
-        <div style={{ padding: isCollapsed ? '16px 8px' : '16px 14px' }}>
+        <div style={{ padding: isCollapsed ? '14px 8px' : '14px 12px' }}>
           <button
             onClick={onOpenNewRun}
             style={{
@@ -146,20 +146,20 @@ export function DashboardSidebar({ isCollapsed, setIsCollapsed, isMobileOpen, se
               display: 'flex',
               alignItems: 'center',
               justifyContent: isCollapsed ? 'center' : 'flex-start',
-              gap: '10px',
-              padding: isCollapsed ? '10px' : '10px 14px',
-              borderRadius: 'var(--radius-md)',
-              background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
-              color: '#ffffff',
+              gap: '8px',
+              padding: isCollapsed ? '8px' : '8px 12px',
+              borderRadius: 'var(--radius-sm)',
+              backgroundColor: 'var(--text-primary)',
+              color: 'var(--bg-primary)',
               fontWeight: 600,
-              fontSize: '0.875rem',
-              boxShadow: 'var(--shadow-glow-cyan)',
-              border: 'none',
-              cursor: 'pointer'
+              fontSize: '0.8125rem',
+              border: '1px solid var(--text-primary)',
+              cursor: 'pointer',
+              transition: 'opacity 100ms ease'
             }}
             title="Start New Migration"
           >
-            <PlusCircle size={18} />
+            <PlusCircle size={15} />
             {!isCollapsed && <span>New Migration</span>}
           </button>
         </div>
@@ -267,7 +267,7 @@ export function DashboardSidebar({ isCollapsed, setIsCollapsed, isMobileOpen, se
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', overflow: 'hidden' }}>
               <img
                 src={user?.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${user?.id || 'guest'}`}
-                alt={user?.name || 'User avatar'}
+                alt={`${user?.name || 'Developer'}'s profile avatar`}
                 style={{
                   width: '32px',
                   height: '32px',

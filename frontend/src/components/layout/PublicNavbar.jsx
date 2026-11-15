@@ -3,18 +3,18 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
 import { Button } from '../ui/Button';
-import { Sun, Moon, Menu, X, ArrowRight, Sparkles, Layers } from 'lucide-react';
+import { BrandLogo } from '../common/BrandLogo';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 
 export function PublicNavbar() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { isDark, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
 
   const navLinks = [
-    { label: 'Features', href: '/#features' },
-    { label: 'How It Works', href: '/#how-it-works' },
     { label: 'Architecture', href: '/#architecture' },
+    { label: 'CLI & Workflow', href: '/#workflow' },
+    { label: 'Benchmarks', href: '/#benchmarks' },
     { label: 'Pricing', href: '/#pricing' },
     { label: 'FAQ', href: '/#faq' }
   ];
@@ -25,10 +25,12 @@ export function PublicNavbar() {
         position: 'sticky',
         top: 0,
         zIndex: 5000,
-        backgroundColor: 'var(--bg-primary)',
+        backgroundColor: isDark ? 'rgba(9, 9, 11, 0.82)' : 'rgba(255, 255, 255, 0.85)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid var(--border-subtle)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)'
+        height: '60px',
+        transition: 'background-color 200ms ease'
       }}
     >
       <div
@@ -37,41 +39,40 @@ export function PublicNavbar() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: '70px'
+          height: '100%'
         }}
       >
-        {/* Logo */}
+        {/* Brand Logo */}
         <Link
           to="/"
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            gap: '8px',
             textDecoration: 'none',
-            color: 'inherit'
+            color: 'var(--text-primary)'
           }}
         >
           <div
             style={{
-              width: '36px',
-              height: '36px',
-              borderRadius: 'var(--radius-md)',
-              background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
+              width: '28px',
+              height: '28px',
+              borderRadius: 'var(--radius-sm)',
+              backgroundColor: 'var(--bg-surface)',
+              border: '1px solid var(--border-default)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: 'var(--shadow-glow-cyan)',
-              color: '#ffffff',
-              fontSize: '1.25rem'
+              color: 'var(--text-primary)'
             }}
           >
-            🦋
+            <BrandLogo size={16} />
           </div>
           <span
             style={{
-              fontSize: '1.25rem',
-              fontWeight: 800,
-              letterSpacing: '-0.03em',
+              fontSize: '1rem',
+              fontWeight: 700,
+              letterSpacing: '-0.02em',
               color: 'var(--text-primary)'
             }}
           >
@@ -80,15 +81,16 @@ export function PublicNavbar() {
           <span
             style={{
               fontSize: '0.6875rem',
-              fontWeight: 700,
-              padding: '2px 6px',
-              borderRadius: 'var(--radius-full)',
-              backgroundColor: 'rgba(6, 182, 212, 0.15)',
-              color: 'var(--accent-cyan)',
-              border: '1px solid rgba(6, 182, 212, 0.3)'
+              fontWeight: 600,
+              padding: '1px 5px',
+              borderRadius: 'var(--radius-sm)',
+              backgroundColor: 'var(--bg-surface)',
+              color: 'var(--text-muted)',
+              border: '1px solid var(--border-subtle)',
+              fontFamily: 'var(--font-mono)'
             }}
           >
-            JS → TS AGENT
+            v1.0
           </span>
         </Link>
 
@@ -97,7 +99,7 @@ export function PublicNavbar() {
           style={{
             display: 'none',
             alignItems: 'center',
-            gap: '28px'
+            gap: '24px'
           }}
           className="desktop-nav"
         >
@@ -106,13 +108,13 @@ export function PublicNavbar() {
               key={link.label}
               href={link.href}
               style={{
-                fontSize: '0.9rem',
+                fontSize: '0.8125rem',
                 fontWeight: 500,
                 color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 transition: 'color var(--transition-fast)'
               }}
-              onMouseEnter={(e) => (e.target.style.color = 'var(--accent-cyan)')}
+              onMouseEnter={(e) => (e.target.style.color = 'var(--text-primary)')}
               onMouseLeave={(e) => (e.target.style.color = 'var(--text-secondary)')}
             >
               {link.label}
@@ -121,28 +123,28 @@ export function PublicNavbar() {
         </nav>
 
         {/* Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <button
             onClick={toggleTheme}
             style={{
-              width: '38px',
-              height: '38px',
-              borderRadius: 'var(--radius-md)',
+              width: '32px',
+              height: '32px',
+              borderRadius: 'var(--radius-sm)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: 'var(--bg-surface-elevated)',
-              color: 'var(--text-secondary)',
-              border: '1px solid var(--border-default)'
+              backgroundColor: 'transparent',
+              color: 'var(--text-muted)',
+              border: '1px solid var(--border-subtle)'
             }}
             aria-label="Toggle theme"
           >
-            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            {isDark ? <Sun size={15} /> : <Moon size={15} />}
           </button>
 
           {isAuthenticated ? (
             <Link to="/dashboard" style={{ textDecoration: 'none' }}>
-              <Button variant="primary" size="sm" icon={Layers}>
+              <Button variant="primary" size="sm">
                 Dashboard
               </Button>
             </Link>
@@ -154,29 +156,31 @@ export function PublicNavbar() {
                 </Button>
               </Link>
               <Link to="/register" style={{ textDecoration: 'none' }}>
-                <Button variant="primary" size="sm" icon={Sparkles}>
+                <Button variant="primary" size="sm">
                   Get Started
                 </Button>
               </Link>
             </div>
           )}
 
-          {/* Mobile menu toggle */}
+          {/* Mobile hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: 'var(--radius-sm)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '8px',
-              borderRadius: 'var(--radius-md)',
-              color: 'var(--text-primary)',
-              backgroundColor: 'var(--bg-surface-elevated)'
+              backgroundColor: 'transparent',
+              color: 'var(--text-secondary)',
+              border: '1px solid var(--border-subtle)'
             }}
-            className="mobile-toggle"
+            className="mobile-nav-toggle"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
           </button>
         </div>
       </div>
@@ -184,13 +188,17 @@ export function PublicNavbar() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
-          className="glass-panel-elevated animate-fade-in"
           style={{
-            padding: '20px',
-            borderTop: '1px solid var(--border-subtle)',
+            position: 'absolute',
+            top: '56px',
+            left: 0,
+            right: 0,
+            backgroundColor: 'var(--bg-primary)',
+            borderBottom: '1px solid var(--border-subtle)',
+            padding: '16px 24px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '16px'
+            gap: '12px'
           }}
         >
           {navLinks.map((link) => (
@@ -199,45 +207,23 @@ export function PublicNavbar() {
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
               style={{
-                fontSize: '1rem',
+                fontSize: '0.875rem',
                 fontWeight: 500,
-                color: 'var(--text-primary)',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
-                padding: '8px 0'
+                padding: '6px 0'
               }}
             >
               {link.label}
             </a>
           ))}
-          <div style={{ paddingTop: '12px', borderTop: '1px solid var(--border-subtle)' }}>
-            {isAuthenticated ? (
-              <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="primary" style={{ width: '100%' }}>
-                  Go to Dashboard
-                </Button>
-              </Link>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="outline" style={{ width: '100%' }}>
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/register" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="primary" style={{ width: '100%' }}>
-                    Create Free Account
-                  </Button>
-                </Link>
-              </div>
-            )}
-          </div>
         </div>
       )}
 
       <style>{`
         @media (min-width: 768px) {
           .desktop-nav { display: flex !important; }
-          .mobile-toggle { display: none !important; }
+          .mobile-nav-toggle { display: none !important; }
         }
       `}</style>
     </header>

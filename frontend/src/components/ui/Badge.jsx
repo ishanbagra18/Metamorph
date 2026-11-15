@@ -12,43 +12,43 @@ export function Badge({
     success: {
       backgroundColor: 'var(--status-success-bg)',
       color: 'var(--status-success)',
-      borderColor: 'rgba(16, 185, 129, 0.3)'
+      borderColor: 'rgba(16, 185, 129, 0.25)'
     },
     warning: {
       backgroundColor: 'var(--status-warning-bg)',
       color: 'var(--status-warning)',
-      borderColor: 'rgba(245, 158, 11, 0.3)'
+      borderColor: 'rgba(245, 158, 11, 0.25)'
     },
     danger: {
       backgroundColor: 'var(--status-danger-bg)',
       color: 'var(--status-danger)',
-      borderColor: 'rgba(244, 63, 94, 0.3)'
+      borderColor: 'rgba(239, 68, 68, 0.25)'
     },
     info: {
       backgroundColor: 'var(--status-info-bg)',
       color: 'var(--accent-cyan)',
-      borderColor: 'rgba(6, 182, 212, 0.3)'
-    },
-    purple: {
-      backgroundColor: 'rgba(139, 92, 246, 0.12)',
-      color: 'var(--accent-purple)',
-      borderColor: 'rgba(139, 92, 246, 0.3)'
+      borderColor: 'rgba(14, 165, 233, 0.25)'
     },
     cyan: {
-      backgroundColor: 'rgba(6, 182, 212, 0.12)',
+      backgroundColor: 'var(--status-info-bg)',
       color: 'var(--accent-cyan)',
-      borderColor: 'rgba(6, 182, 212, 0.3)'
+      borderColor: 'rgba(14, 165, 233, 0.25)'
+    },
+    purple: {
+      backgroundColor: 'var(--bg-surface-elevated)',
+      color: 'var(--text-primary)',
+      borderColor: 'var(--border-default)'
     },
     neutral: {
-      backgroundColor: 'var(--bg-surface-elevated)',
+      backgroundColor: 'var(--bg-surface)',
       color: 'var(--text-secondary)',
-      borderColor: 'var(--border-default)'
+      borderColor: 'var(--border-subtle)'
     }
   };
 
   const sizeStyles = {
-    sm: { padding: '2px 8px', fontSize: '0.75rem' },
-    md: { padding: '4px 12px', fontSize: '0.8125rem' }
+    sm: { padding: '2px 7px', fontSize: '0.75rem', height: '20px' },
+    md: { padding: '3px 9px', fontSize: '0.8125rem', height: '24px' }
   };
 
   return (
@@ -56,15 +56,15 @@ export function Badge({
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '6px',
-        fontWeight: 600,
-        borderRadius: 'var(--radius-full)',
-        border: '1px solid',
-        textTransform: 'uppercase',
-        letterSpacing: '0.04em',
-        userSelect: 'none',
+        gap: '5px',
+        fontWeight: 500,
+        fontFamily: 'var(--font-mono)',
+        borderRadius: 'var(--radius-sm)',
+        border: '1px solid transparent',
+        lineHeight: 1,
+        whiteSpace: 'nowrap',
         ...sizeStyles[size],
-        ...variantStyles[variant],
+        ...(variantStyles[variant] || variantStyles.neutral),
         ...style
       }}
       {...props}
@@ -72,12 +72,10 @@ export function Badge({
       {dot && (
         <span
           style={{
-            width: '6px',
-            height: '6px',
+            width: '5px',
+            height: '5px',
             borderRadius: '50%',
-            backgroundColor: 'currentColor',
-            display: 'inline-block',
-            boxShadow: '0 0 6px currentColor'
+            backgroundColor: 'currentColor'
           }}
         />
       )}

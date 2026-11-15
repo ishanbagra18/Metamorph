@@ -1,0 +1,51 @@
+# Metamorph: Autonomous JavaScript to TypeScript Migration Agent
+
+> Metamorph is an autonomous, AST-directed multi-agent system powered by LangGraph, Qdrant Vector RAG, and TypeScript compiler feedback loops (`tsc --noEmit`) that converts legacy Node.js/Express JavaScript repositories to modern, strictly-typed TypeScript without silent runtime regressions or untyped `any` leaks.
+
+Canonical URL: https://metamorph.dev
+Documentation: https://metamorph.dev/
+Repository: https://github.com/metamorph-dev/metamorph
+
+## Core Architecture
+
+1. Multi-Agent Orchestration (LangGraph):
+   - Analyzer Agent: Extracts Tree-sitter AST nodes (functions, classes, route handlers) and runs baseline test suites.
+   - Planner Agent: Builds NetworkX module dependency graphs, detects cycles via Tarjan's Strongly Connected Components (SCC), and plans topological leaf-first migration orders.
+   - Migration Agent: Retrieves relevant type signatures from upstream files via Qdrant RAG and generates strict TypeScript code.
+   - Validation Agent: Executes `tsc --noEmit` inside an isolated sandbox (Docker or subprocess fallback). Diagnostic compiler errors are fed back into the LLM for targeted self-healing (up to 3 iterative cycles).
+   - Review & Reporter Agent: Computes quality metrics (TypeScript strictness, `any` usage percentage, test pass ladder) and writes comprehensive migration reports.
+
+2. Qdrant Vector Database RAG:
+   - Chunking: AST-aware chunking separating functions, route definitions, and database schemas.
+   - Embeddings: 384-dimensional vector representations indexing semantic code chunks and symbol exports.
+   - Hybrid Retrieval: Exact symbol lookup merged with dense vector similarity search to supply sibling context to the LLM during code generation.
+
+3. Sandbox Runner:
+   - Docker Sandbox: Isolated container execution with network disabled during Phase 2 (code compilation) for zero data egress.
+   - Subprocess Sandbox: Local fallback runner executing inside isolated workspace directories when Docker daemon is offline.
+
+## Key Clean URL Slugs & Routes
+
+- `/`: Metamorph platform homepage, interactive architecture flow, technical FAQ, and feature benchmarks.
+- `/login`: Secure authentication portal for developers and engineering teams.
+- `/register`: Developer onboarding and workspace creation.
+- `/dashboard`: Real-time migration analytics, active agent runs, and repository conversion statistics.
+- `/migrations`: Paginated list of repository migration workspaces and downloadable archives.
+- `/migrations/:id`: Interactive run inspector with live DAG visualization, WebSocket streaming logs, diagnostic compiler outputs, and side-by-side diff viewers.
+- `/profile`: Developer settings, team roles, and session tokens.
+- `/settings`: LLM engine selection (Groq LLaMA 3.3 70B, Google Gemini 2.5 Flash), sandbox mode preference, and credential management.
+- `/admin/dashboard`: System telemetry and cluster performance metrics.
+- `/404`: Clean error recovery route with navigational links.
+
+## REST & WebSocket APIs
+
+- `POST /api/auth/register`: Register new developer account.
+- `POST /api/auth/login`: Authenticate and receive JWT access/refresh token pair.
+- `POST /api/runs/upload`: Upload Node.js repository `.zip` archive for migration.
+- `POST /api/runs/clone`: Ingest repository via public Git URL.
+- `POST /api/runs/{run_id}/start`: Trigger LangGraph autonomous migration pipeline.
+- `GET /api/runs/{run_id}/status`: Polling endpoint for migration run status and AST metrics.
+- `GET /api/runs/{run_id}/diff/{file_path}`: Side-by-side unified diff between JavaScript original and TypeScript result.
+- `GET /api/runs/{run_id}/download`: Download complete strictly-typed TypeScript repository as `.zip`.
+- `WS /ws/{run_id}`: Real-time live log and event stream for the migration terminal.
+

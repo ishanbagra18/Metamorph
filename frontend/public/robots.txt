@@ -1,0 +1,49 @@
+# ==============================================================================
+# Metamorph Autonomous JS -> TS Migration Agent
+# Production Crawler Directives
+# Canonical Host: https://metamorph.dev
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+Allow: /forgot-password
+Allow: /reset-password
+Allow: /verify-email
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /llms.txt
+Allow: /favicon.svg
+Allow: /og-image.svg
+
+# Disallow authenticated application workspaces & APIs from public indexing
+Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /migrations
+Disallow: /migrations/
+Disallow: /profile
+Disallow: /profile/
+Disallow: /settings
+Disallow: /settings/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /ws/
+
+# AI Crawlers specific permissions for developer documentation
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: Google-Extended
+Allow: /
+Allow: /llms.txt
+
+# Canonical XML Sitemap
+Sitemap: https://metamorph.dev/sitemap.xml
+

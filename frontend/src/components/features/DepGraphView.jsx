@@ -5,7 +5,7 @@ import { Badge } from '../ui/Badge';
 export function DepGraphView({ plan = [], tasks = {}, depGraph = {}, cycles = [], selectedFile, onSelectFile }) {
   if (!plan || plan.length === 0) {
     return (
-      <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
+      <div style={{ padding: '36px', textAlign: 'center', color: 'var(--text-muted)', backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)' }}>
         No topological plan generated yet. The Analyzer and Planner agents will compute leaf-first dependency ordering upon execution.
       </div>
     );
@@ -62,12 +62,14 @@ export function DepGraphView({ plan = [], tasks = {}, depGraph = {}, cycles = []
 
       {/* Topological Flow Stages */}
       <div
-        className="glass-panel"
         style={{
-          padding: '20px',
+          padding: '16px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '12px'
+          gap: '12px',
+          backgroundColor: 'var(--bg-card)',
+          border: '1px solid var(--border-subtle)',
+          borderRadius: 'var(--radius-md)'
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>

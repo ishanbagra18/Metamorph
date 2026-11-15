@@ -5,6 +5,9 @@ import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/ui/Card';
 import { Mail, Lock, ArrowRight, Shield, User } from 'lucide-react';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
+import { BrandLogo } from '../../components/common/BrandLogo';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
@@ -57,29 +60,35 @@ export function LoginPage() {
         justifyContent: 'center',
         padding: '40px 16px'
       }}
-      className="bg-glow-radial"
     >
-      <div style={{ width: '100%', maxWidth: '440px' }} className="animate-fade-in">
-        <Card className="glass-panel-elevated" style={{ padding: '36px 32px' }}>
-          <CardHeader style={{ textAlign: 'center', marginBottom: '24px' }}>
+      <SEO
+        title="Sign In"
+        description="Sign in to your Metamorph account to orchestrate, inspect, and deploy automated TypeScript migrations."
+        canonicalPath="/login"
+      />
+      <div style={{ width: '100%', maxWidth: '420px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+          <Breadcrumbs items={[{ label: 'Sign In' }]} />
+        </div>
+        <Card style={{ padding: '32px 28px' }}>
+          <CardHeader style={{ textAlign: 'center', marginBottom: '20px' }}>
             <div
               style={{
-                width: '48px',
-                height: '48px',
-                borderRadius: 'var(--radius-md)',
-                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
+                width: '40px',
+                height: '40px',
+                borderRadius: 'var(--radius-sm)',
+                backgroundColor: 'var(--bg-surface)',
+                border: '1px solid var(--border-default)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: 'var(--shadow-glow-cyan)',
-                color: '#ffffff',
-                fontSize: '1.5rem',
-                margin: '0 auto 16px'
+                color: 'var(--text-primary)',
+                margin: '0 auto 14px'
               }}
             >
-              🦋
+              <BrandLogo size={20} />
             </div>
-            <CardTitle style={{ fontSize: '1.5rem' }}>Welcome Back</CardTitle>
+            <CardTitle as="h1" style={{ fontSize: '1.25rem' }}>Welcome Back</CardTitle>
             <CardDescription>
               Sign in to manage and monitor your TypeScript migration pipelines.
             </CardDescription>
@@ -89,15 +98,15 @@ export function LoginPage() {
             {/* Demo Accounts Quick-Fill helper */}
             <div
               style={{
-                padding: '12px',
-                borderRadius: 'var(--radius-md)',
-                backgroundColor: 'var(--bg-surface-elevated)',
+                padding: '10px 12px',
+                borderRadius: 'var(--radius-sm)',
+                backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
-                marginBottom: '20px'
+                marginBottom: '18px'
               }}
             >
-              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '8px', textTransform: 'uppercase' }}>
-                Quick Demo Credentials:
+              <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '8px', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
+                Demo Credentials:
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                 <button
@@ -106,35 +115,37 @@ export function LoginPage() {
                   style={{
                     padding: '6px 8px',
                     borderRadius: 'var(--radius-sm)',
-                    backgroundColor: 'rgba(139, 92, 246, 0.15)',
-                    color: 'var(--accent-purple)',
+                    backgroundColor: 'var(--bg-primary)',
+                    border: '1px solid var(--border-subtle)',
+                    color: 'var(--text-primary)',
                     fontSize: '0.75rem',
-                    fontWeight: 600,
+                    fontWeight: 500,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '4px'
                   }}
                 >
-                  <Shield size={12} /> Admin Demo
+                  Admin
                 </button>
                 <button
                   type="button"
-                  onClick={() => fillDemo('alice@example.com', 'password123')}
+                  onClick={() => fillDemo('developer@metamorph.dev', 'password123')}
                   style={{
                     padding: '6px 8px',
                     borderRadius: 'var(--radius-sm)',
-                    backgroundColor: 'rgba(6, 182, 212, 0.15)',
-                    color: 'var(--accent-cyan)',
+                    backgroundColor: 'var(--bg-primary)',
+                    border: '1px solid var(--border-subtle)',
+                    color: 'var(--text-primary)',
                     fontSize: '0.75rem',
-                    fontWeight: 600,
+                    fontWeight: 500,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '4px'
                   }}
                 >
-                  <User size={12} /> Developer Demo
+                  Developer
                 </button>
               </div>
             </div>

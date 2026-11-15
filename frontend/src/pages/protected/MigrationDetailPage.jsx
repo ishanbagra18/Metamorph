@@ -11,6 +11,9 @@ import { DepGraphView } from '../../components/features/DepGraphView';
 import { QualityScoreMeter } from '../../components/features/QualityScoreMeter';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { useToast } from '../../context/ToastContext';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
+import { BrandLogo } from '../../components/common/BrandLogo';
 import {
   FileCode,
   Layers,
@@ -24,7 +27,6 @@ import {
   ArrowLeft,
   CheckCircle2,
   AlertTriangle,
-  Sparkles,
   GitCommit
 } from 'lucide-react';
 
@@ -69,9 +71,22 @@ export function MigrationDetailPage() {
   useEffect(() => {
     if (!runId) return;
 
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.host;
-    const wsUrl = `${protocol}//${host}/ws/${runId}`;
+    let wsUrl;
+    if (import.meta.env.VITE_WS_URL) {
+      wsUrl = `${import.meta.env.VITE_WS_URL.replace(/\/$/, '')}/ws/${runId}`;
+    } else if (import.meta.env.VITE_API_URL && import.meta.env.VITE_API_URL.startsWith('http')) {
+      try {
+        const apiUrl = new URL(import.meta.env.VITE_API_URL);
+        const wsProtocol = apiUrl.protocol === 'https:' ? 'wss:' : 'ws:';
+        wsUrl = `${wsProtocol}//${apiUrl.host}/ws/${runId}`;
+      } catch {
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        wsUrl = `${protocol}//${window.location.host}/ws/${runId}`;
+      }
+    } else {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      wsUrl = `${protocol}//${window.location.host}/ws/${runId}`;
+    }
 
     const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
@@ -110,8 +125,8 @@ export function MigrationDetailPage() {
           toast.error('Migration execution failed: ' + (payload.data?.error || 'Compiler error'));
           fetchRun();
         }
-      } catch (err) {
-        console.error('WS parse error:', err);
+      } catch (_ignored) {
+        // Heartbeat or non-json frame ignored
       }
     };
 
@@ -183,6 +198,18 @@ export function MigrationDetailPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <SEO
+        title={`Migration Inspector: ${run.repo_name || runId}`}
+        description={`Real-time AST dependency graph, agent stream logs, compiler diagnostic feedback, and TypeScript diffs for repository ${run.repo_name || runId}.`}
+        canonicalPath={`/migrations/${runId}`}
+      />
+      <Breadcrumbs
+        items={[
+          { label: 'Migrations', href: '/migrations' },
+          { label: run.repo_name || runId }
+        ]}
+      />
+
       {/* Back button and navigation */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
         <Link
@@ -210,46 +237,43 @@ export function MigrationDetailPage() {
 
       {/* Main Status Header Card */}
       <div
-        className="glass-panel-elevated"
         style={{
-          padding: '24px 28px',
+          padding: '20px 24px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '20px',
-          borderLeft: `6px solid ${
-            run.status === 'completed' ? 'var(--status-success)' :
-            isRunning ? 'var(--accent-cyan)' :
-            run.status === 'failed' ? 'var(--status-danger)' : 'var(--text-muted)'
-          }`
+          gap: '16px',
+          backgroundColor: 'var(--bg-card)',
+          border: '1px solid var(--border-subtle)',
+          borderRadius: 'var(--radius-md)'
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div
               style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: 'var(--radius-md)',
-                backgroundColor: 'rgba(6, 182, 212, 0.15)',
-                color: 'var(--accent-cyan)',
+                width: '36px',
+                height: '36px',
+                borderRadius: 'var(--radius-sm)',
+                backgroundColor: 'var(--bg-surface)',
+                border: '1px solid var(--border-default)',
+                color: 'var(--text-primary)',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '1.25rem'
+                justifyContent: 'center'
               }}
             >
-              🦋
+              <BrandLogo size={18} />
             </div>
 
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.015em' }}>
                   {run.repo_name}
                 </h2>
                 <Badge
                   variant={
                     run.status === 'completed' ? 'success' :
-                    isRunning ? 'cyan' :
+                    isRunning ? 'info' :
                     run.status === 'failed' ? 'danger' : 'neutral'
                   }
                   dot={isRunning}

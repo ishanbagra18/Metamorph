@@ -5,7 +5,7 @@ import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { migrationsApi } from '../../lib/api/migrations';
 import { useToast } from '../../context/ToastContext';
-import { Upload, GitBranch, FileCode, CheckCircle2, AlertCircle, Sparkles, FolderArchive } from 'lucide-react';
+import { Upload, GitBranch, FileCode, CheckCircle2, AlertCircle, FolderArchive } from 'lucide-react';
 
 export function CreateRunModal({ isOpen, onClose }) {
   const [activeTab, setActiveTab] = useState('upload'); // 'upload' | 'clone'
@@ -286,7 +286,7 @@ export function CreateRunModal({ isOpen, onClose }) {
           <Button variant="secondary" type="button" onClick={onClose} disabled={isSubmitting}>
             Cancel
           </Button>
-          <Button variant="primary" type="submit" isLoading={isSubmitting} icon={Sparkles}>
+          <Button variant="primary" type="submit" isLoading={isSubmitting}>
             Initialize Migration
           </Button>
         </div>

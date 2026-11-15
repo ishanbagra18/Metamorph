@@ -16,53 +16,51 @@ export function Button({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '8px',
-    fontWeight: 600,
+    gap: '6px',
+    fontWeight: 500,
     borderRadius: 'var(--radius-md)',
-    transition: 'all var(--transition-fast)',
+    transition: 'background-color 100ms ease, border-color 100ms ease, color 100ms ease, opacity 100ms ease',
     border: '1px solid transparent',
     outline: 'none',
     userSelect: 'none',
     whiteSpace: 'nowrap',
     textDecoration: 'none',
     cursor: disabled || isLoading ? 'not-allowed' : 'pointer',
-    opacity: disabled || isLoading ? 0.65 : 1
+    opacity: disabled || isLoading ? 0.5 : 1,
+    letterSpacing: '-0.01em'
   };
 
   const sizeStyles = {
-    sm: { padding: '6px 12px', fontSize: '0.8125rem' },
-    md: { padding: '9px 18px', fontSize: '0.875rem' },
-    lg: { padding: '12px 24px', fontSize: '1rem' }
+    sm: { padding: '5px 10px', fontSize: '0.8125rem', height: '28px' },
+    md: { padding: '7px 14px', fontSize: '0.875rem', height: '34px' },
+    lg: { padding: '10px 18px', fontSize: '0.9375rem', height: '40px' }
   };
 
   const variantStyles = {
     primary: {
-      background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
-      color: '#ffffff',
-      boxShadow: 'var(--shadow-glow-cyan)'
-    },
-    gradient: {
-      background: 'linear-gradient(135deg, #7c3aed 0%, #0284c7 50%, #06b6d4 100%)',
-      color: '#ffffff',
-      boxShadow: 'var(--shadow-glow-purple)'
+      backgroundColor: 'var(--text-primary)',
+      color: 'var(--bg-primary)',
+      borderColor: 'var(--text-primary)',
+      fontWeight: 600
     },
     secondary: {
-      background: 'var(--bg-surface-elevated)',
+      backgroundColor: 'var(--bg-surface)',
       color: 'var(--text-primary)',
       borderColor: 'var(--border-default)'
     },
     outline: {
-      background: 'transparent',
+      backgroundColor: 'transparent',
       color: 'var(--text-primary)',
       borderColor: 'var(--border-default)'
     },
     ghost: {
-      background: 'transparent',
+      backgroundColor: 'transparent',
       color: 'var(--text-secondary)'
     },
     danger: {
-      background: 'var(--status-danger)',
-      color: '#ffffff'
+      backgroundColor: 'var(--status-danger)',
+      color: '#ffffff',
+      borderColor: 'var(--status-danger)'
     }
   };
 
@@ -71,16 +69,16 @@ export function Button({
       style={{
         ...baseStyles,
         ...sizeStyles[size],
-        ...variantStyles[variant],
+        ...variantStyles[variant] || variantStyles.secondary,
         ...style
       }}
       disabled={disabled || isLoading}
       {...props}
     >
       {isLoading ? (
-        <Loader2 size={16} className="animate-spin" style={{ animation: 'spinSlow 1s linear infinite' }} />
+        <Loader2 size={14} className="animate-spin" style={{ animation: 'spinSlow 1s linear infinite' }} />
       ) : Icon ? (
-        <Icon size={16} />
+        <Icon size={14} />
       ) : null}
       {children}
     </button>

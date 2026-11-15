@@ -4,7 +4,10 @@ import { useAuth } from '../../context/AuthContext';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/ui/Card';
-import { Mail, Lock, User, Building, ArrowRight, Sparkles, Check } from 'lucide-react';
+import { Mail, Lock, User, Building, ArrowRight, Check } from 'lucide-react';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
+import { BrandLogo } from '../../components/common/BrandLogo';
 
 export function RegisterPage() {
   const [name, setName] = useState('');
@@ -73,29 +76,35 @@ export function RegisterPage() {
         justifyContent: 'center',
         padding: '40px 16px'
       }}
-      className="bg-glow-radial"
     >
-      <div style={{ width: '100%', maxWidth: '480px' }} className="animate-fade-in">
-        <Card className="glass-panel-elevated" style={{ padding: '36px 32px' }}>
-          <CardHeader style={{ textAlign: 'center', marginBottom: '24px' }}>
+      <SEO
+        title="Create Account"
+        description="Join Metamorph to automatically migrate enterprise JavaScript codebases to TypeScript with compiler verification."
+        canonicalPath="/register"
+      />
+      <div style={{ width: '100%', maxWidth: '440px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+          <Breadcrumbs items={[{ label: 'Create Account' }]} />
+        </div>
+        <Card style={{ padding: '32px 28px' }}>
+          <CardHeader style={{ textAlign: 'center', marginBottom: '20px' }}>
             <div
               style={{
-                width: '48px',
-                height: '48px',
-                borderRadius: 'var(--radius-md)',
-                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
+                width: '40px',
+                height: '40px',
+                borderRadius: 'var(--radius-sm)',
+                backgroundColor: 'var(--bg-surface)',
+                border: '1px solid var(--border-default)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: 'var(--shadow-glow-cyan)',
-                color: '#ffffff',
-                fontSize: '1.5rem',
-                margin: '0 auto 16px'
+                color: 'var(--text-primary)',
+                margin: '0 auto 14px'
               }}
             >
-              🦋
+              <BrandLogo size={20} />
             </div>
-            <CardTitle style={{ fontSize: '1.5rem' }}>Create Your Account</CardTitle>
+            <CardTitle as="h1" style={{ fontSize: '1.25rem' }}>Create Account</CardTitle>
             <CardDescription>
               Start transforming Node.js JavaScript codebases to strict TypeScript.
             </CardDescription>
@@ -116,7 +125,7 @@ export function RegisterPage() {
               <Input
                 label="Work Email"
                 type="email"
-                placeholder="ada@company.com"
+                placeholder="developer@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 error={errors.email}
@@ -126,7 +135,7 @@ export function RegisterPage() {
 
               <Input
                 label="Company / Team (Optional)"
-                placeholder="Acme Engineering"
+                placeholder="e.g. Platform Engineering"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 icon={Building}
@@ -200,7 +209,6 @@ export function RegisterPage() {
                 size="md"
                 isLoading={isSubmitting}
                 style={{ width: '100%', marginTop: '8px' }}
-                icon={Sparkles}
               >
                 Create Account
               </Button>

@@ -9,6 +9,8 @@ import { SkeletonTable } from '../../components/ui/Skeleton';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { useToast } from '../../context/ToastContext';
 import { Users, Search, Shield, Trash2, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 
 export function AdminUsersPage() {
   const [users, setUsers] = useState([]);
@@ -71,6 +73,13 @@ export function AdminUsersPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <SEO
+        title="User Governance"
+        description="Manage developer accounts, assign administrative roles, and audit access permissions."
+        canonicalPath="/admin/users"
+      />
+      <Breadcrumbs items={[{ label: 'Admin', href: '/admin/dashboard' }, { label: 'Users' }]} />
+
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
         <div>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
@@ -123,7 +132,7 @@ export function AdminUsersPage() {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                           <img
                             src={u.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${u.id}`}
-                            alt={u.name}
+                            alt={u.name || 'User profile photo'}
                             style={{
                               width: '32px',
                               height: '32px',
@@ -147,7 +156,7 @@ export function AdminUsersPage() {
                       </td>
 
                       <td style={{ padding: '14px 20px', color: 'var(--text-muted)' }}>
-                        {u.company || '—'}
+                        {u.company || '-'}
                       </td>
 
                       <td style={{ padding: '14px 20px' }}>

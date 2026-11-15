@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, useLocation, Outlet } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { BrandLogo } from '../common/BrandLogo';
 import { Loader2 } from 'lucide-react';
 
 export function ProtectedRoute({ children }) {
@@ -16,14 +17,28 @@ export function ProtectedRoute({ children }) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '16px',
+          gap: '12px',
           backgroundColor: 'var(--bg-primary)'
         }}
       >
-        <div style={{ fontSize: '2.5rem' }}>🦋</div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--accent-cyan)' }}>
-          <Loader2 size={20} className="animate-spin" style={{ animation: 'spinSlow 1s linear infinite' }} />
-          <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>Loading Metamorph Workspace...</span>
+        <div
+          style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: 'var(--radius-sm)',
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border-default)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--text-primary)'
+          }}
+        >
+          <BrandLogo size={20} />
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.8125rem' }}>
+          <Loader2 size={14} className="animate-spin" style={{ animation: 'spinSlow 1s linear infinite' }} />
+          <span>Authenticating session...</span>
         </div>
       </div>
     );

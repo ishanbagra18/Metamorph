@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileCode, Copy, Check, Columns, AlignLeft, AlertCircle, Sparkles, CheckCircle2 } from 'lucide-react';
+import { FileCode, Copy, Check, Columns, AlignLeft, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { Badge } from '../ui/Badge';
 import { useToast } from '../../context/ToastContext';
 
@@ -11,7 +11,6 @@ export function DiffViewer({ task, filePath }) {
   if (!task) {
     return (
       <div
-        className="glass-panel"
         style={{
           padding: '60px 20px',
           textAlign: 'center',
@@ -19,7 +18,10 @@ export function DiffViewer({ task, filePath }) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '12px'
+          gap: '12px',
+          backgroundColor: 'var(--bg-card)',
+          border: '1px solid var(--border-subtle)',
+          borderRadius: 'var(--radius-md)'
         }}
       >
         <FileCode size={36} />

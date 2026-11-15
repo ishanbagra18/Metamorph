@@ -6,6 +6,8 @@ import { Input } from '../../components/ui/Input';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/ui/Card';
 import { Lock, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
+import { SEO } from '../../components/common/SEO';
+import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 
 export function ResetPasswordPage() {
   const { token: urlToken } = useParams();
@@ -54,12 +56,19 @@ export function ResetPasswordPage() {
         justifyContent: 'center',
         padding: '40px 16px'
       }}
-      className="bg-glow-radial"
     >
-      <div style={{ width: '100%', maxWidth: '440px' }} className="animate-fade-in">
-        <Card className="glass-panel-elevated" style={{ padding: '36px 32px' }}>
+      <SEO
+        title="Reset Password"
+        description="Create a secure new password for your Metamorph developer account."
+        canonicalPath="/reset-password"
+      />
+      <div style={{ width: '100%', maxWidth: '420px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+          <Breadcrumbs items={[{ label: 'Reset Password' }]} />
+        </div>
+        <Card style={{ padding: '32px 28px' }}>
           <CardHeader style={{ textAlign: 'center', marginBottom: '24px' }}>
-            <CardTitle style={{ fontSize: '1.5rem' }}>Create New Password</CardTitle>
+            <CardTitle as="h1" style={{ fontSize: '1.5rem' }}>Create New Password</CardTitle>
             <CardDescription>
               Enter and confirm your new secure account password.
             </CardDescription>

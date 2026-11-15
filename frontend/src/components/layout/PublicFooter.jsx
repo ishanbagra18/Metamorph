@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Terminal, Zap, Shield, Heart } from 'lucide-react';
+import { BrandLogo } from '../common/BrandLogo';
 
 export function PublicFooter() {
   return (
     <footer
       style={{
-        backgroundColor: 'var(--bg-secondary)',
+        backgroundColor: 'var(--bg-primary)',
         borderTop: '1px solid var(--border-subtle)',
-        paddingTop: '64px',
+        paddingTop: '48px',
         paddingBottom: '32px'
       }}
     >
@@ -16,67 +16,61 @@ export function PublicFooter() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '40px',
-            marginBottom: '48px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '32px',
+            marginBottom: '40px'
           }}
         >
           {/* Brand Info */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '1.5rem' }}>🦋</span>
-              <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <BrandLogo size={18} color="var(--text-primary)" />
+              <span style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                 Metamorph
               </span>
             </div>
-            <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-              Autonomous, AST-directed multi-agent system powered by LangGraph, Qdrant RAG, and isolated sandbox compiler loops for effortless JavaScript to TypeScript migrations.
+            <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', lineHeight: 1.5, maxWidth: '280px' }}>
+              Compiler-guided TypeScript migration engine for Node.js and Express codebases.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8125rem', color: 'var(--status-success)' }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--status-success)' }} />
-              Migration Engine Online (v1.0.0)
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+              Core Pipeline v1.0.0 (Production)
             </div>
           </div>
 
-          {/* Product */}
+          {/* Architecture */}
           <div>
-            <h4 style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>
-              Product
+            <h4 style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '12px', fontFamily: 'var(--font-mono)' }}>
+              Architecture
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.875rem' }}>
-              <li><a href="/#features" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Multi-Agent Pipeline</a></li>
-              <li><a href="/#how-it-works" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Topological Execution</a></li>
-              <li><a href="/#architecture" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Qdrant Vector RAG</a></li>
-              <li><a href="/#pricing" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Pricing & Plans</a></li>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.8125rem' }}>
+              <li><a href="/#architecture" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Tree-sitter AST Chunker</a></li>
+              <li><a href="/#architecture" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Tarjan SCC Cycle Resolution</a></li>
+              <li><a href="/#architecture" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Qdrant Vector Retrieval</a></li>
+              <li><a href="/#workflow" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Sandbox Compiler Loop</a></li>
             </ul>
           </div>
 
-          {/* Developers */}
+          {/* Specifications */}
           <div>
-            <h4 style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>
-              Developers
+            <h4 style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '12px', fontFamily: 'var(--font-mono)' }}>
+              Documentation
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.875rem' }}>
-              <li><a href="/docs" target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>REST API Docs</a></li>
-              <li><a href="https://github.com" target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>GitHub Repository</a></li>
-              <li><a href="/#faq" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Compiler Feedback Loop</a></li>
-              <li><Link to="/login" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Developer Portal</Link></li>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.8125rem' }}>
+              <li><a href="/llms.txt" target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>llms.txt Specification</a></li>
+              <li><a href="/sitemap.xml" target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Sitemap Index</a></li>
+              <li><a href="/robots.txt" target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Robots Directives</a></li>
+              <li><Link to="/login" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Developer Sign In</Link></li>
             </ul>
           </div>
 
-          {/* Security & Sandbox */}
+          {/* Runtime Verification */}
           <div>
-            <h4 style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>
-              Integrity & Safety
+            <h4 style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '12px', fontFamily: 'var(--font-mono)' }}>
+              Verification
             </h4>
-            <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '12px' }}>
-              Code is verified inside network-disabled Docker containers with zero network egress during static analysis and compilation.
+            <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+              Executes isolated npm install, npx tsc, and test ladder validation inside network-disabled containers.
             </p>
-            <div style={{ display: 'flex', gap: '12px', color: 'var(--text-muted)' }}>
-              <Shield size={18} />
-              <Terminal size={18} />
-              <Zap size={18} />
-            </div>
           </div>
         </div>
 
@@ -84,23 +78,25 @@ export function PublicFooter() {
         <div
           style={{
             borderTop: '1px solid var(--border-subtle)',
-            paddingTop: '24px',
+            paddingTop: '20px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             gap: '12px',
-            fontSize: '0.8125rem',
+            fontSize: '0.75rem',
             color: 'var(--text-muted)'
           }}
         >
           <div>
-            © {new Date().getFullYear()} Metamorph. All rights reserved.
+            © {new Date().getFullYear()} Metamorph Technologies Inc. All rights reserved.
           </div>
-          <div style={{ display: 'flex', gap: '20px' }}>
-            <Link to="/login" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Login</Link>
-            <Link to="/register" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Register</Link>
-            <a href="/docs" target="_blank" rel="noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>API</a>
+          <div style={{ display: 'flex', gap: '16px', fontFamily: 'var(--font-mono)' }}>
+            <Link to="/login" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>login</Link>
+            <Link to="/register" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>register</Link>
+            <a href="/sitemap.xml" target="_blank" rel="noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>sitemap</a>
+            <a href="/robots.txt" target="_blank" rel="noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>robots</a>
+            <a href="/llms.txt" target="_blank" rel="noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>llms.txt</a>
           </div>
         </div>
       </div>
